@@ -11,8 +11,8 @@ import {
 // ══════════════════════════════════════════════════════════════
 //  CONFIGURACIÓN — completar antes de enviar al cliente
 // ══════════════════════════════════════════════════════════════
-const PRECIO_1 = "$ ________";     // Ej: "$ 380.000"
-const PRECIO_2 = "$ ________";     // Ej: "$ 520.000"
+const PRECIO_1 = "$ 650.000";
+const PRECIO_2 = "$ 980.000";
 const MANTENIMIENTO = 30_000;
 const WHATSAPP = "5493511234567";   // Cambiar al número real
 const FECHA = "Agosto 2026";
@@ -102,7 +102,6 @@ export default function Presupuesto() {
   return (
     <div className="min-h-screen bg-[#0a0f1e] text-slate-100 font-sans antialiased">
 
-      {/* ── Header ── */}
       <header className="sticky top-0 z-40 backdrop-blur-md bg-[#0a0f1e]/85 border-b border-slate-800/70">
         <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
@@ -111,7 +110,7 @@ export default function Presupuesto() {
             </div>
             <div className="flex flex-col leading-none">
               <span className="font-semibold text-sm text-slate-100">Nutrición &amp; Psicología</span>
-              <span className="text-[10px] text-slate-500 font-medium">Plataforma bariátrica · VanzaCode</span>
+              <span className="text-[10px] text-slate-500 font-medium">Plataforma de salud · VanzaCode</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -142,7 +141,6 @@ export default function Presupuesto() {
 
       <main className="max-w-4xl mx-auto px-4 pb-16">
 
-        {/* ── Hero ── */}
         <section className="relative pt-16 sm:pt-24 pb-12 text-center overflow-hidden">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_45%_at_50%_0%,rgba(20,184,166,0.12),transparent_70%)]" />
           <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-4 py-1.5 text-sm font-medium text-teal-300 mb-5">
@@ -155,7 +153,7 @@ export default function Presupuesto() {
           </h1>
           <p className="mt-4 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto">
             Landing profesional + sistema de turnos online para la atención de
-            pacientes en proceso bariátrico. El sistema trabaja por ustedes las
+            pacientes que necesitan acompañamiento nutricional y psicológico. El sistema trabaja por ustedes las
             24 horas, incluso cuando el consultorio está cerrado.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-center gap-3">
@@ -191,7 +189,6 @@ export default function Presupuesto() {
           </div>
         </section>
 
-        {/* ── Opciones ── */}
         <Sec icon={Sparkles} eyebrow="Dos caminos posibles" title="Elegí el que mejor se adapta a este momento">
           <div className="flex sm:hidden rounded-lg border border-slate-800 p-0.5 text-sm mb-4">
             {([1, 2] as const).map((op) => (
@@ -227,7 +224,6 @@ export default function Presupuesto() {
           </div>
         </Sec>
 
-        {/* ── Módulos ── */}
         <Sec
           icon={CheckCircle2}
           eyebrow={`Opción ${opcion} · qué incluye`}
@@ -254,7 +250,6 @@ export default function Presupuesto() {
           )}
         </Sec>
 
-        {/* ── Plazo ── */}
         <Sec icon={Clock} eyebrow="Tiempo de entrega" title="Plazo de entrega: 1 semana">
           <div className="rounded-xl border border-teal-500/20 bg-teal-500/[0.05] p-6 max-w-lg flex items-start gap-4">
             <div className="w-10 h-10 rounded-xl bg-teal-500/15 border border-teal-500/30 grid place-items-center shrink-0">
@@ -267,7 +262,6 @@ export default function Presupuesto() {
           </div>
         </Sec>
 
-        {/* ── Precio ── */}
         <Sec icon={Wallet} eyebrow="Inversión" title="Precio del proyecto">
           <div className="grid sm:grid-cols-2 gap-4">
             {[
@@ -350,7 +344,6 @@ export default function Presupuesto() {
           </div>
         </Sec>
 
-        {/* ── Hosting ── */}
         <Sec icon={Wallet} eyebrow="Hosting anual" title="Costo de hosting a partir del Año 2">
           <div className="grid sm:grid-cols-2 gap-4 max-w-2xl">
             <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-5">
@@ -366,7 +359,6 @@ export default function Presupuesto() {
           </div>
         </Sec>
 
-        {/* ── Mantenimiento ── */}
         <Sec icon={Repeat} eyebrow="Mensual · opcional" title="Mantenimiento y soporte">
           <div className="rounded-xl border border-teal-500/30 bg-teal-500/[0.06] p-6 max-w-md relative">
             <span className="absolute -top-2.5 left-5 text-[10px] font-semibold uppercase tracking-wide bg-teal-600 text-white px-2 py-0.5 rounded-full">
@@ -396,7 +388,6 @@ export default function Presupuesto() {
           </p>
         </Sec>
 
-        {/* ── Condiciones ── */}
         <Sec icon={Clock} eyebrow="Condiciones comerciales" title="Cómo trabajamos">
           <div className="grid sm:grid-cols-3 gap-3">
             {[
@@ -427,7 +418,6 @@ export default function Presupuesto() {
           </div>
         </Sec>
 
-        {/* ── FAQ ── */}
         <Sec icon={ChevronDown} eyebrow="Preguntas frecuentes" title="Lo que solés preguntar">
           <div className="space-y-2">
             {FAQS.map((f, i) => (
@@ -452,7 +442,6 @@ export default function Presupuesto() {
           </div>
         </Sec>
 
-        {/* ── CTA final ── */}
         <section className="my-16 rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900/80 to-[#0a0f1e] p-8 sm:p-12 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-100">¿Avanzamos?</h2>
           <p className="mt-2 text-slate-400 max-w-xl mx-auto">
@@ -479,7 +468,6 @@ export default function Presupuesto() {
           </div>
         </section>
 
-        {/* ── Footer ── */}
         <footer className="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
           <div className="inline-flex items-center gap-2 mb-2">
             <div className="w-6 h-6 rounded-lg bg-teal-500/15 grid place-items-center border border-teal-500/20">
@@ -503,8 +491,6 @@ export default function Presupuesto() {
     </div>
   );
 }
-
-// ── Sub-components ──────────────────────────────
 
 function Sec({ icon: Icon, eyebrow, title, children }: {
   icon: LucideIcon; eyebrow: string; title: string; children: React.ReactNode;
