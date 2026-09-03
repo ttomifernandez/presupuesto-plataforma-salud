@@ -39,7 +39,7 @@ const MODULOS_COMUNES = [
     icon: Calendar,
     titulo: "Sistema de turnos online",
     desc: "Los pacientes reservan su turno directo desde la web, sin llamadas ni idas y vueltas.",
-    features: ["Calendario por profesional (nutricionista / psicóloga)", "Confirmación automática por email y WhatsApp", "Recordatorio 24 hs antes del turno", "Cancelación y reprogramación libre"],
+    features: ["Calendario por profesional (nutricionista / psicóloga)", "Confirmación por email", "Recordatorio 24 hs antes del turno", "Cancelación y reprogramación libre", "La profesional confirma desde el panel (sin WhatsApp automático)"],
   },
   {
     icon: ShieldCheck,
@@ -50,8 +50,8 @@ const MODULOS_COMUNES = [
   {
     icon: BellRing,
     titulo: "Recordatorios automáticos",
-    desc: "El sistema avisa solo: confirmaciones, recordatorios y cambios sin intervención manual.",
-    features: ["Email de confirmación al reservar", "Recordatorio 24 hs antes", "Aviso de cancelación a la profesional", "Mensajes personalizables"],
+    desc: "El sistema avisa por email. Pueden configurar recordatorios, sin que tengan que estar mirando el sistema todo el día.",
+    features: ["Email de confirmación al reservar", "Recordatorio 24 hs antes"],
   },
 ];
 
@@ -70,28 +70,10 @@ const MODULOS_OPCION2 = [
   },
 ];
 
-const TIMELINE = [
-  {
-    semana: "Semanas 1–2",
-    titulo: "Diseño y arquitectura",
-    items: ["Wireframes y diseño de pantallas", "Definición de flujos de usuario", "Base de datos y estructura técnica", "Aprobación de diseño final"],
-  },
-  {
-    semana: "Semanas 3–5",
-    titulo: "Desarrollo core",
-    items: ["Landing profesional", "Sistema de turnos y calendario", "Panel de cada profesional", "Integraciones de email y WhatsApp"],
-  },
-  {
-    semana: "Semana 6",
-    titulo: "Testing y lanzamiento",
-    items: ["Pruebas con usuarias reales", "Ajustes y correcciones", "Deploy en producción", "Capacitación a las profesionales"],
-  },
-];
-
 const FAQS = [
   {
     q: "¿Necesito contratar hosting aparte?",
-    a: "No. El hosting y el dominio del primer año están incluidos. Desde el segundo año el costo es de aproximadamente $15.000/año, que podés renovar de forma independiente.",
+    a: "No. El hosting y el dominio del primer año están bonificados (sin costo). A partir del segundo año el hosting tiene un costo de AR$ 95.000/año, que se renueva de forma independiente.",
   },
   {
     q: "¿Puedo arrancar con Opción 1 y agregar el portal de pacientes después?",
@@ -103,13 +85,15 @@ const FAQS = [
   },
   {
     q: "¿Cómo reciben los turnos nuevos?",
-    a: "Reciben un email al instante y pueden configurar un aviso por WhatsApp. No tienen que estar mirando el sistema todo el día.",
+    a: "Reciben un email al instante. No tienen que estar mirando el sistema todo el día.",
   },
   {
     q: "¿Qué pasa si quiero hacer un cambio después del lanzamiento?",
     a: "Para eso existe el mantenimiento mensual. Incluye actualizaciones, pequeños ajustes y soporte. Cambios grandes se presupuestan aparte.",
   },
 ];
+
+// ── Component ────────────────────────────────
 
 export default function Presupuesto() {
   const [opcion, setOpcion] = useState<1 | 2>(1);
@@ -118,6 +102,7 @@ export default function Presupuesto() {
   return (
     <div className="min-h-screen bg-[#0a0f1e] text-slate-100 font-sans antialiased">
 
+      {/* ── Header ── */}
       <header className="sticky top-0 z-40 backdrop-blur-md bg-[#0a0f1e]/85 border-b border-slate-800/70">
         <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
@@ -157,6 +142,7 @@ export default function Presupuesto() {
 
       <main className="max-w-4xl mx-auto px-4 pb-16">
 
+        {/* ── Hero ── */}
         <section className="relative pt-16 sm:pt-24 pb-12 text-center overflow-hidden">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_45%_at_50%_0%,rgba(20,184,166,0.12),transparent_70%)]" />
           <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-4 py-1.5 text-sm font-medium text-teal-300 mb-5">
@@ -192,7 +178,7 @@ export default function Presupuesto() {
           </div>
           <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { v: "6 sem.", l: "Tiempo de desarrollo" },
+              { v: "1 sem.", l: "Plazo de entrega" },
               { v: "2", l: "Agendas independientes" },
               { v: "100%", l: "A medida" },
               { v: "24/7", l: "Sistema online" },
@@ -205,25 +191,7 @@ export default function Presupuesto() {
           </div>
         </section>
 
-        <Sec icon={HeartPulse} eyebrow="El punto de partida" title="Una atención que merece mejor infraestructura">
-          <div className="space-y-4 max-w-3xl">
-            <p className="text-slate-400 leading-relaxed sm:text-lg">
-              Los pacientes que atraviesan un bypass gástrico o manga enfrentan un
-              proceso largo, emocional y exigente. Necesitan acompañamiento
-              nutricional <em>y</em> psicológico que funcione en sintonía. Cuando
-              ese equipo no tiene las herramientas digitales correctas, el cuidado
-              se fragmenta: turnos perdidos, planes en WhatsApp, historias clínicas
-              en papel.
-            </p>
-            <p className="text-slate-400 leading-relaxed sm:text-lg">
-              Esta plataforma centraliza todo. Los pacientes reservan en un clic
-              y reciben recordatorios automáticos. Las profesionales ven su agenda
-              al día, gestionan disponibilidad y suben planes sin depender de
-              terceros.
-            </p>
-          </div>
-        </Sec>
-
+        {/* ── Opciones ── */}
         <Sec icon={Sparkles} eyebrow="Dos caminos posibles" title="Elegí el que mejor se adapta a este momento">
           <div className="flex sm:hidden rounded-lg border border-slate-800 p-0.5 text-sm mb-4">
             {([1, 2] as const).map((op) => (
@@ -259,6 +227,7 @@ export default function Presupuesto() {
           </div>
         </Sec>
 
+        {/* ── Módulos ── */}
         <Sec
           icon={CheckCircle2}
           eyebrow={`Opción ${opcion} · qué incluye`}
@@ -285,33 +254,20 @@ export default function Presupuesto() {
           )}
         </Sec>
 
-        <Sec icon={Clock} eyebrow="6 semanas de desarrollo" title="Cómo arrancamos">
-          <div className="relative">
-            <div className="absolute left-4 top-0 bottom-0 w-px bg-slate-800 hidden sm:block" />
-            <div className="space-y-4">
-              {TIMELINE.map((fase, i) => (
-                <div key={i} className="sm:pl-12 relative">
-                  <div className="absolute left-0 top-4 w-8 h-8 rounded-full border-2 border-teal-500/40 bg-[#0a0f1e] hidden sm:grid place-items-center">
-                    <span className="text-xs font-bold text-teal-400">{i + 1}</span>
-                  </div>
-                  <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                    <span className="text-xs font-semibold text-teal-400 uppercase tracking-wide">{fase.semana}</span>
-                    <h4 className="mt-1 font-semibold text-slate-100">{fase.titulo}</h4>
-                    <ul className="mt-3 grid sm:grid-cols-2 gap-1.5">
-                      {fase.items.map((item) => (
-                        <li key={item} className="flex gap-2 text-sm text-slate-400">
-                          <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
+        {/* ── Plazo ── */}
+        <Sec icon={Clock} eyebrow="Tiempo de entrega" title="Plazo de entrega: 1 semana">
+          <div className="rounded-xl border border-teal-500/20 bg-teal-500/[0.05] p-6 max-w-lg flex items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-teal-500/15 border border-teal-500/30 grid place-items-center shrink-0">
+              <Clock className="w-5 h-5 text-teal-400" />
+            </div>
+            <div>
+              <p className="text-slate-200 font-medium">El sistema queda listo y en funcionamiento en 1 semana desde que confirmás.</p>
+              <p className="mt-1 text-sm text-slate-400">Incluye diseño, desarrollo, pruebas y puesta en marcha. Sin fases ni entregas parciales.</p>
             </div>
           </div>
         </Sec>
 
+        {/* ── Precio ── */}
         <Sec icon={Wallet} eyebrow="Inversión" title="Precio del proyecto">
           <div className="grid sm:grid-cols-2 gap-4">
             {[
@@ -365,7 +321,7 @@ export default function Presupuesto() {
               <h4 className="font-semibold text-emerald-300 mb-3">Incluye en ambas opciones</h4>
               <ul className="space-y-2">
                 {[
-                  "Hosting y dominio el primer año",
+                  "Hosting y dominio — Año 1 sin costo (bonificado)",
                   "Diseño responsivo (celular, tablet y PC)",
                   "Capacitación a las profesionales",
                   "30 días de garantía post-lanzamiento",
@@ -383,7 +339,6 @@ export default function Presupuesto() {
                 {[
                   "Redacción de textos ni fotografías",
                   "Integración con historia clínica electrónica u otros sistemas externos",
-                  "Renovación de hosting desde el 2.° año (~$15.000/año)",
                   "Funcionalidades fuera del alcance acordado",
                 ].map((i) => (
                   <li key={i} className="flex gap-2 text-sm text-slate-400">
@@ -395,6 +350,23 @@ export default function Presupuesto() {
           </div>
         </Sec>
 
+        {/* ── Hosting ── */}
+        <Sec icon={Wallet} eyebrow="Hosting anual" title="Costo de hosting a partir del Año 2">
+          <div className="grid sm:grid-cols-2 gap-4 max-w-2xl">
+            <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-5">
+              <div className="text-xs font-semibold uppercase tracking-wide text-emerald-400 mb-2">Año 1</div>
+              <div className="text-2xl font-bold text-slate-100">AR$ 0</div>
+              <div className="mt-1 text-sm text-slate-400">Bonificado — incluido en el proyecto</div>
+            </div>
+            <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+              <div className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2">A partir del Año 2</div>
+              <div className="text-2xl font-bold text-slate-100">AR$ 95.000<span className="text-base font-normal text-slate-500">/año</span></div>
+              <div className="mt-1 text-sm text-slate-400">Renovación anual · se paga de forma independiente</div>
+            </div>
+          </div>
+        </Sec>
+
+        {/* ── Mantenimiento ── */}
         <Sec icon={Repeat} eyebrow="Mensual · opcional" title="Mantenimiento y soporte">
           <div className="rounded-xl border border-teal-500/30 bg-teal-500/[0.06] p-6 max-w-md relative">
             <span className="absolute -top-2.5 left-5 text-[10px] font-semibold uppercase tracking-wide bg-teal-600 text-white px-2 py-0.5 rounded-full">
@@ -424,6 +396,7 @@ export default function Presupuesto() {
           </p>
         </Sec>
 
+        {/* ── Condiciones ── */}
         <Sec icon={Clock} eyebrow="Condiciones comerciales" title="Cómo trabajamos">
           <div className="grid sm:grid-cols-3 gap-3">
             {[
@@ -433,7 +406,7 @@ export default function Presupuesto() {
               },
               {
                 titulo: "Plazo de entrega",
-                items: ["6 semanas desde el inicio", "Arranca al confirmar el anticipo", "Revisiones incluidas en ese tiempo"],
+                items: ["1 semana desde el inicio", "Arranca al confirmar el anticipo", "Revisiones incluidas en ese tiempo"],
               },
               {
                 titulo: "Garantía",
@@ -454,6 +427,7 @@ export default function Presupuesto() {
           </div>
         </Sec>
 
+        {/* ── FAQ ── */}
         <Sec icon={ChevronDown} eyebrow="Preguntas frecuentes" title="Lo que solés preguntar">
           <div className="space-y-2">
             {FAQS.map((f, i) => (
@@ -478,6 +452,7 @@ export default function Presupuesto() {
           </div>
         </Sec>
 
+        {/* ── CTA final ── */}
         <section className="my-16 rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900/80 to-[#0a0f1e] p-8 sm:p-12 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-100">¿Avanzamos?</h2>
           <p className="mt-2 text-slate-400 max-w-xl mx-auto">
@@ -504,6 +479,7 @@ export default function Presupuesto() {
           </div>
         </section>
 
+        {/* ── Footer ── */}
         <footer className="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
           <div className="inline-flex items-center gap-2 mb-2">
             <div className="w-6 h-6 rounded-lg bg-teal-500/15 grid place-items-center border border-teal-500/20">
@@ -527,6 +503,8 @@ export default function Presupuesto() {
     </div>
   );
 }
+
+// ── Sub-components ──────────────────────────────
 
 function Sec({ icon: Icon, eyebrow, title, children }: {
   icon: LucideIcon; eyebrow: string; title: string; children: React.ReactNode;
